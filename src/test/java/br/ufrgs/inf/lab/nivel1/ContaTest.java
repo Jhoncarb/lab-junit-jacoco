@@ -49,46 +49,65 @@ class ContaTest {
     // ---------------------------------------------------------------
 
     @Test
-    @Disabled("N1-A: complete e remova esta linha")
+    // @Disabled("N1-A: complete e remova esta linha")
     void depositoComValorNegativoDeveSerRecusado() {
         Conta conta = new Conta("Ana", 100.0);
         
+        boolean depositou = conta.depositar(-10.0);
+
+        assertFalse(depositou);
+        assertEquals(100.0, conta.getSaldo(), DELTA);
         // PASSO 1: chame conta.depositar(-10.0) e guarde o resultado numa variável boolean.
         // PASSO 2: verifique com assertFalse(...) que o depósito foi recusado.
         // PASSO 3: verifique com assertEquals(esperado, obtido, DELTA) que o saldo NÃO mudou
         //          (continua 100.0).
 
-        fail("Complete o teste N1-A");
+        // fail("Complete o teste N1-A");
     }
 
     @Test
-    @Disabled("N1-B: complete e remova esta linha")
+    // @Disabled("N1-B: complete e remova esta linha")
     void saqueValidoDeveDiminuirOSaldo() {
         Conta conta = new Conta("Ana", 100.0);
+
+        boolean sacou = conta.sacar(30.0);
+
+        assertTrue(sacou);
+        assertEquals(70.0, conta.getSaldo(), DELTA);
 
         // PASSO 1: faça um saque de 30.0 (conta.sacar(...)) e guarde o resultado.
         // PASSO 2: verifique com assertTrue(...) que o saque foi aceito.
         // PASSO 3: verifique com assertEquals que o saldo agora é 70.0.
 
-        fail("Complete o teste N1-B");
+        // fail("Complete o teste N1-B");
     }
 
     @Test
-    @Disabled("N1-C: complete e remova esta linha")
+    // @Disabled("N1-C: complete e remova esta linha")
     void saqueMaiorQueOSaldoDeveSerRecusado() {
         Conta conta = new Conta("Ana", 100.0);
+
+        boolean sacou = conta.sacar(100.01);
+
+        assertFalse(sacou);
+        assertEquals(100.00, conta.getSaldo(), DELTA);
 
         // PASSO 1: tente sacar 100.01 e guarde o resultado.
         // PASSO 2: verifique com assertFalse(...) que o saque foi recusado.
         // PASSO 3: verifique que o saldo continua 100.0.
 
-        fail("Complete o teste N1-C");
+        // fail("Complete o teste N1-C");
     }
 
     @Test
-    @Disabled("N1-D: complete e remova esta linha")
+    // @Disabled("N1-D: complete e remova esta linha")
     void saqueDoSaldoExatoDeveSerPermitidoEZerarAConta() {
         Conta conta = new Conta("Ana", 100.0);
+
+        boolean sacou = conta.sacar(100.0);
+
+        assertTrue(sacou);
+        assertEquals(0.0, conta.getSaldo(), DELTA);
 
         // Este é um TESTE DE VALOR-LIMITE (fronteira): sacar exatamente o saldo.
         // PASSO 1: saque 100.0 e guarde o resultado.
@@ -96,6 +115,6 @@ class ContaTest {
         // PASSO 3: verifique com assertEquals que o saldo é 0.0.
         // PASSO 4 (reflexão): por que o código usa "valor > saldo" e não "valor >= saldo"?
 
-        fail("Complete o teste N1-D");
+        // fail("Complete o teste N1-D");
     }
 }
